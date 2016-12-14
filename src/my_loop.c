@@ -16,10 +16,10 @@ void my_loop(t_env *e)
 {
 	//mlx_expose_hook(e->win, expose_hook, e);
 	// mlx_key_hook(t_e->win, my_key_funct, t_e);
-	mlx_hook(e->win, 2, 0, my_key_pressed, e);
+	mlx_hook(e->win_2, 2, 0, my_key_pressed, e);
 	// mlx_hook(t_e->win, 5, 0, my_mouse_released, t_e);
-	mlx_hook(e->win, 6, 0, my_mouse_motion, e);
-	mlx_mouse_hook(e->win, my_mouse_function,e);
+	mlx_hook(e->win_2, 6, 0, my_mouse_motion, e);
+	mlx_mouse_hook(e->win_2, my_mouse_function,e);
 	mlx_loop_hook(e->mlx, my_loop_hook, e);
 	mlx_loop(e->mlx);
 }
@@ -48,9 +48,9 @@ int my_mouse_function(int button, int i, int j, t_env *e)
 {
 	 
 	if (button == 1)
-		e->max_iterations += 5;
+		e->max_iterations_j += 5;
 	else if (button == 2)
-		e->max_iterations -= 5;;
+		e->max_iterations_j -= 5;;
 	if (button == 1 || button == 2)
 	{
 		mlx_clear_window(e->mlx, e->win);
@@ -64,11 +64,11 @@ int my_mouse_motion(int i , int j , t_env *e)
 	// t_tree *t;
 	// t_vec2 *v;
 	// ft_printf("X = %d Y = %d\n", i , j);
-	if (i > 0 && i < WIDTH && j > 0 && j < HEIGHT)
+	if (i > 0 && i < W_2 && j > 0 && j < H_2)
 	{
 		mlx_clear_window(e->mlx, e->win);
-		draw_j(e, 2.5 * (i - WIDTH / 2) / (WIDTH / 2 * e->zoom) + e->move_x ,
-			2.5 * (j - HEIGHT / 2) / (HEIGHT / 2 * e->zoom) + e->move_y);
+		draw_j(e, (i - W_2 / 2) / (W_2 / 2 * e->zoom) + e->move_x ,
+			(j - H_2 / 2) / (H_2 / 2 * e->zoom) + e->move_y);
 	}
 	return (0);
 }
@@ -96,8 +96,8 @@ int my_loop_hook(t_env *e)
 	if (e->flags)
 	{
 		e->flags = 0;
-		mlx_clear_window(e->mlx, e->win);
-		draw_j(e, 0, 0);
+		mlx_clear_window(e->mlx, e->win_2);
+		draw(e);
 	}
 	return (0);
 }

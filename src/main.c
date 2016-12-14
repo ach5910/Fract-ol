@@ -326,6 +326,19 @@ t_img	*init_image(t_env *e)
 	return (img);
 }
 
+t_img	*init_image_2(t_env *e)
+{
+	t_img *img;
+
+	img = (t_img*)malloc(sizeof(t_img));
+	img->i_ptr = mlx_new_image(e->mlx, W_2, H_2);
+	img->w = W_2 / 2;
+	img->h = H_2 / 2;
+	img->data = mlx_get_data_addr(img->i_ptr, &img->bpp, &img->size_line, &img->endian);
+	
+	return (img);
+}
+
 t_env	*init_environment(void)
 {
 	t_env *e;
@@ -333,6 +346,8 @@ t_env	*init_environment(void)
 	e = (t_env*)malloc(sizeof(t_env));
 	e->mlx = mlx_init();
 	e->win = mlx_new_window(e->mlx, WIDTH, HEIGHT, "Fract'ol");
+	e->win_2 = mlx_new_window(e->mlx, W_2, H_2, "Mandelbrot Map");
+	e->img_2 = init_image_2(e);
 	e->img = init_image(e);
 	e->zoom = 1;
 	e->move_x = 0;
@@ -340,6 +355,7 @@ t_env	*init_environment(void)
 	e->flags = 0;
 	e->scale = 1;
 	e->max_iterations = 50;
+	e->max_iterations_j = 100;
 	return (e);
 }
 
@@ -387,16 +403,16 @@ void draw(t_env *e)
 		// char *i_data = e->img->data;
 	
 
-	r = sqrt(pow(WIDTH / 2, 2) + pow(HEIGHT / 2, 2));
+	r = sqrt(pow(W_2 / 2, 2) + pow(H_2 / 2, 2));
 	j = 0;
 	p = 0;
-	while (j < HEIGHT)
+	while (j < H_2)
 	{
 		i = 0;
-		while (i < WIDTH)
+		while (i < W_2)
 		{
-			c_a = 2.5  * (i - WIDTH / 2) / (WIDTH / 2 * e->zoom) + e->move_x ;
-			c_b = 2.5 * (j - HEIGHT / 2) / (HEIGHT / 2 * e->zoom) + e->move_y ;//(j - e->img->h / 2) / (0.5 * e->img->h )
+			c_a =  (i - W_2 / 2) / (W_2 / 2 * e->zoom) + e->move_x ;
+			c_b = (j - H_2 / 2) / (H_2 / 2 * e->zoom) + e->move_y ;//(j - e->img->h / 2) / (0.5 * e->img->h )
 			if ((ret = mandelbrot(e, r, c_a, c_b)) == e->max_iterations)
 				color = 0;
 			else
@@ -405,10 +421,10 @@ void draw(t_env *e)
 			}
 			// color = sqrt(pow(i - WIDTH / 2, 2) + pow(j - HEIGHT / 2, 2)) * 256 / r;
 			// color = dusk[color % 256];
-			p = (i * 4) + (j * e->img->size_line);
-			e->img->data[p] = color & 0xFF;
-			e->img->data[++p] = (color >> 8) & 0xFF;
-			e->img->data[++p] = (color >> 16) & 0xFF;
+			p = (i * 4) + (j * e->img_2->size_line);
+			e->img_2->data[p] = color & 0xFF;
+			e->img_2->data[++p] = (color >> 8) & 0xFF;
+			e->img_2->data[++p] = (color >> 16) & 0xFF;
 			i++;
 		}
 		j++;
@@ -416,9 +432,9 @@ void draw(t_env *e)
 	// ft_printf(" Bpp %d Size line %d Endian %d Data %d\n", e->img->bpp, e->img->size_line, e->img->endian, ft_atoi(e->img->data));
 	//e->img->data = mlx_get_data_addr(e->img->i_ptr, &e->img->bpp, &e->img->size_line, &e->img->endian);
 	//count++;
-	i = mlx_put_image_to_window(e->mlx, e->win, e->img->i_ptr, 0, 0);
-	mlx_destroy_image(e->mlx, e->img->i_ptr);
-	e->img->i_ptr = mlx_new_image(e->mlx, WIDTH, HEIGHT);
+	i = mlx_put_image_to_window(e->mlx, e->win_2, e->img_2->i_ptr, 0, 0);
+	mlx_destroy_image(e->mlx, e->img_2->i_ptr);
+	e->img_2->i_ptr = mlx_new_image(e->mlx, W_2, H_2);
 }
 
 int julia(t_env *e, float c_a, float c_b, float c_re, float c_im)
@@ -434,7 +450,7 @@ int julia(t_env *e, float c_a, float c_b, float c_re, float c_im)
 	n = 0;
 	a = c_a;
 	b = c_b;
-	while (n < e->max_iterations)
+	while (n < e->max_iterations_j)
 	{
 		o_a = a;
 		o_b = b;
@@ -475,13 +491,13 @@ void draw_j(t_env *e, float c_re, float c_im)
 		i = 0;
 		while (i < WIDTH)
 		{
-			c_a = 2.5 * (i - WIDTH / 2) / (WIDTH / 2 * e->zoom) + e->move_x ;
-			c_b = 2.5 * (j - HEIGHT / 2) / (HEIGHT / 2 * e->zoom) + e->move_y ;//(j - e->img->h / 2) / (0.5 * e->img->h )
-			if ((ret = julia(e, c_a, c_b, c_re, c_im)) == e->max_iterations)
+			c_a = 2.5 * (i - WIDTH / 2) / (WIDTH / 2 );
+			c_b = 2.5 * (j - HEIGHT / 2) / (HEIGHT / 2 );//(j - e->img->h / 2) / (0.5 * e->img->h )
+			if ((ret = julia(e, c_a, c_b, c_re, c_im)) == e->max_iterations_j)
 				color = 0;
 			else
 			{
-				color = unicore_queef[(int)((ret * 256 / e->max_iterations))];
+				color = unicore_queef[(int)((ret * 256 / e->max_iterations_j))];
 			}
 			// color = sqrt(pow(i - WIDTH / 2, 2) + pow(j - HEIGHT / 2, 2)) * 256 / r;
 			// color = dusk[color % 256];
@@ -504,6 +520,7 @@ int	main(void)
 {
 	t_env *e;
 	e = init_environment();
+	draw(e);
 	draw_j(e, 0, 0);
 	my_loop(e);
 	return (0);

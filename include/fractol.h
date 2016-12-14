@@ -17,6 +17,8 @@
 # include "math.h"
 # define WIDTH 1500
 # define HEIGHT 1000
+# define W_2 800
+# define H_2 800
 # define TRAN_H 0x01
 # define TRAN_V  0x02
 # define SCL  0x04
@@ -43,13 +45,16 @@ typedef struct 	s_env
 {
 	void	*mlx;
 	void	*win;
+	void	*win_2;
 	t_img	*img;
+	t_img	*img_2;
 	double	zoom;
 	double	move_x;
 	double	move_y;
 	double  scale;
 	unsigned char flags;
 	int max_iterations;
+	int max_iterations_j;
 
 }				t_env;
 
