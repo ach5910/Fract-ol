@@ -48,13 +48,14 @@ int my_mouse_function(int button, int i, int j, t_env *e)
 {
 	 
 	if (button == 1)
-		e->max_iterations_j += 5;
+		e->max_iterations_j += 2;
 	else if (button == 2)
-		e->max_iterations_j -= 5;;
+		e->max_iterations_j -= 2;;
 	if (button == 1 || button == 2)
 	{
 		mlx_clear_window(e->mlx, e->win);
-		draw_j(e, 0, 0);
+		draw_j(e, (i - W_2 / 2) / (W_2 / 2 * e->zoom) + e->move_x ,
+			(j - H_2 / 2) / (H_2 / 2 * e->zoom) + e->move_y);
 	}
 	return (0);
 }
