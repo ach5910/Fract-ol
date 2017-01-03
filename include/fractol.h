@@ -15,14 +15,17 @@
 # include "mlx.h"
 # include "libft.h"
 # include "math.h"
-# define WIDTH 1500
-# define HEIGHT 1000
-# define W_2 800
-# define H_2 800
+# define WIDTH 800
+# define HEIGHT 600
+# define W_2 500
+# define H_2 500
 # define TRAN_H 0x01
 # define TRAN_V  0x02
 # define SCL  0x04
 # define SIGN 0x08
+# define JULIA 0x01
+# define MAND  0x02
+# define TREE  0x04
 
 typedef struct 	s_vec2
 {
@@ -51,7 +54,9 @@ typedef struct 	s_env
 	double	zoom;
 	double	move_x;
 	double	move_y;
-	double  scale;
+	int		loc_x;
+	int		loc_y;
+	unsigned char fractol;
 	unsigned char flags;
 	int max_iterations;
 	int max_iterations_j;
@@ -59,17 +64,26 @@ typedef struct 	s_env
 }				t_env;
 
 // int count = 0;
-int main(void);
+int main(int argc, char **argv);
 int mandlebrot(t_env *e, float r, float c_a, float c_b);
 int julia(t_env *e, float c_a, float c_b, float c_re, float c_im);
 t_img *init_image(t_env *e);
-t_env *init_environment(void);
+t_env	*init_julia(t_env *e);
+t_env	*init_mandlebrot(t_env *e);
+t_env	*init_tree(t_env *e);
+t_env *init_environment(char *argv);
 void	my_loop(t_env *e);
 void	draw(t_env *e);
 void	draw_j(t_env *e, float c_re, float c_im);
-int my_loop_hook(t_env *e);
-int my_key_pressed(int keycode, t_env *e);
-int my_mouse_function(int keycode, int i, int h, t_env *e);
-int my_mouse_motion(int i , int j , t_env *e);
-
+void	julia_hook(t_env *e);
+void	mandlebrot_hook(t_env *e);
+// void	tree_hook(t_env *e);
+int my_loop_hook_j(t_env *e);
+int my_key_pressed_j(int keycode, t_env *e);
+int my_mouse_function_j(int keycode, int i, int h, t_env *e);
+int my_mouse_motion_j(int i , int j , t_env *e);
+int my_loop_hook_m(t_env *e);
+int my_key_pressed_m(int keycode, t_env *e);
+int my_mouse_function_m(int keycode, int i, int h, t_env *e);
+int my_mouse_motion_m(int i , int j , t_env *e);
 #endif

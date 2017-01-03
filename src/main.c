@@ -405,23 +405,65 @@ t_img	*init_image_2(t_env *e)
 	return (img);
 }
 
-t_env	*init_environment(void)
+t_env	*init_julia(t_env *e)
 {
-	t_env *e;
-
-	e = (t_env*)malloc(sizeof(t_env));
-	e->mlx = mlx_init();
-	e->win = mlx_new_window(e->mlx, WIDTH, HEIGHT, "Fract'ol");
-	e->win_2 = mlx_new_window(e->mlx, W_2, H_2, "Mandelbrot Map");
+	e->win = mlx_new_window(e->mlx, WIDTH, HEIGHT, "Fract'ol - Julia");
+	e->win_2 = mlx_new_window(e->mlx, W_2, H_2, "Mandelbrot Explorer");
 	e->img_2 = init_image_2(e);
 	e->img = init_image(e);
 	e->zoom = 1;
 	e->move_x = 0;
 	e->move_y = 0;
+	e->loc_x = 0;
+	e->loc_y = 0;
 	e->flags = 0;
-	e->scale = 1;
-	e->max_iterations = 50;
+	e->max_iterations = 40;
 	e->max_iterations_j = 50;
+	return (e);
+}
+
+t_env	*init_mandlebrot(t_env *e)
+{
+	e->win_2 = mlx_new_window(e->mlx, W_2, H_2, "Fract'ol - Mandelbrot");
+	e->img_2 = init_image_2(e);
+	e->zoom = 1;
+	e->move_x = 0;
+	e->move_y = 0;
+	e->loc_x = 0;
+	e->loc_y = 0;
+	e->flags = 0;
+	e->max_iterations = 50;
+	return (e);
+}
+
+unsigned char parse_input(char *argv)
+{
+	if (ft_strcmp(argv, "julia") == 0)
+		return (JULIA);
+	if (ft_strcmp(argv, "mandelbrot") == 0)
+		return (MAND);
+	// if (ft_strcmp(argv, "tree"))
+	// 	return (TREE);
+	return (0);
+}
+
+t_env	*init_environment(char *argv)
+{
+	t_env *e;
+	unsigned char fract;
+
+	if (!(fract = parse_input(argv)))
+		return (NULL);
+	e = (t_env*)malloc(sizeof(t_env));
+	e->mlx = mlx_init();
+	mlx_do_key_autorepeatoff(e->mlx);
+	if (fract & JULIA)
+		e = init_julia(e);
+	else if (fract & MAND)
+		e = init_mandlebrot(e);
+	// else
+	// 	e = init_tree(e);
+	e->fractol |= fract;
 	return (e);
 }
 
@@ -468,7 +510,6 @@ void draw(t_env *e)
 	// e->img->h *= e->zoom;
 		// char *i_data = e->img->data;
 	
-
 	r = sqrt(pow(W_2 / 2, 2) + pow(H_2 / 2, 2));
 	j = 0;
 	p = 0;
@@ -582,12 +623,18 @@ void draw_j(t_env *e, float c_re, float c_im)
 	mlx_destroy_image(e->mlx, e->img->i_ptr);
 	e->img->i_ptr = mlx_new_image(e->mlx, WIDTH, HEIGHT);
 }
-int	main(void)
+int	main(int argc, char **argv)
 {
 	t_env *e;
-	e = init_environment();
-	draw(e);
-	draw_j(e, 0, 0);
-	my_loop(e);
+
+	if (argc == 2)
+	{
+		if ((e = init_environment(argv[1])) == NULL)
+			return (0);
+		draw(e);
+		if (e->fractol & JULIA)
+			draw_j(e, 0, 0);
+		my_loop(e);
+	}
 	return (0);
 }
