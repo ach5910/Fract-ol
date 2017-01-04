@@ -19,6 +19,8 @@
 # define HEIGHT 600
 # define W_2 500
 # define H_2 500
+# define W_T 1500
+# define H_T 1000
 # define TRAN_H 0x01
 # define TRAN_V  0x02
 # define SCL  0x04
@@ -27,11 +29,30 @@
 # define MAND  0x02
 # define TREE  0x04
 
+
+
 typedef struct 	s_vec2
 {
 	double	x;
 	double	y;
 }				t_vec2;
+
+typedef struct  s_tree
+{
+	t_vec2 	*v;
+	double len;
+	double rot;
+	int branch;
+	int size;
+	double theta;
+	double phi;
+	double scl;
+	int 	srt_ht;
+	char *code;
+	char	*x_axiom;
+	char	*f_axiom;
+	int		init_len;
+}				t_tree;
 
 typedef struct  s_img
 {
@@ -60,20 +81,51 @@ typedef struct 	s_env
 	unsigned char flags;
 	int max_iterations;
 	int max_iterations_j;
-
+	t_tree 	*t;
+	int b;
 }				t_env;
 
-// int count = 0;
+typedef struct  s_line
+{
+	double dx;
+	double dy;
+	double p;
+	double i;
+	double j;
+	double j_incr;
+	t_vec2 *end;
+	t_vec2 *start;
+}				t_line;
+
 int main(int argc, char **argv);
+unsigned char parse_input(char *argv);
+void ft_tree(t_env *e);
+void	tree_hook(t_env *e);
+t_tree *ft_pop_tree(t_list **list);
+t_tree *draw_branch(t_env *e, t_tree *t);
+t_line	*get_line_params_x(t_env *e,t_vec2 *p1, t_vec2 *p2);
+t_line	*get_line_params_y(t_env *e, t_vec2 *p1, t_vec2 *p2);
+void draw_lines_x(t_env *e, t_vec2 *p1, t_vec2 *p2);
+void draw_lines_y(t_env *e, t_vec2 *p1, t_vec2 *p2);
+int draw_tree(t_env *e);
+t_img	*init_image_t(t_env *e);
+t_img	*init_image_2(t_env *e);
+int ft_draw_tree(t_env *e, t_tree *t, char *code, int i);
+char *apply_axioms(t_tree *t, char *src);
+char	*generate_code(t_env *e, char *code, int len);
+int my_mouse_function_t(int keycode, int i, int h, t_env *e);
 int mandlebrot(t_env *e, float r, float c_a, float c_b);
 int julia(t_env *e, float c_a, float c_b, float c_re, float c_im);
 t_img *init_image(t_env *e);
 t_env	*init_julia(t_env *e);
 t_env	*init_mandlebrot(t_env *e);
-t_env	*init_tree(t_env *e);
+t_env	*init_tree(t_env *e, char *argv);
+t_env	*init_tripper(t_env *e);
+t_env	*init_windy(t_env *e);
+t_env	*init_ficus(t_env *e);
 t_env *init_environment(char *argv);
 void	my_loop(t_env *e);
-void	draw(t_env *e);
+void	draw_m(t_env *e);
 void	draw_j(t_env *e, float c_re, float c_im);
 void	julia_hook(t_env *e);
 void	mandlebrot_hook(t_env *e);

@@ -36,6 +36,16 @@ RM = rm -rf
 
 SRC_BASE = 	main.c \
 			my_loop.c \
+			draw.c \
+			initialize_image.c \
+			initialize_fractol.c \
+			initialize_fractol_tree.c \
+			julia.c \
+			julia_hook.c \
+			mandelbrot.c \
+			mandelbrot_hook.c \
+			tree.c \
+			tree_hook.c \
 
 SRC = $(addprefix src/, $(SRC_BASE))
 

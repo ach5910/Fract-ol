@@ -145,71 +145,7 @@ int dusk[256] ={
 	0xe, 0xc, 0xa, 0x8, 
 	0x6, 0x4, 0x2, 0};
 
-int rainbow_squanch[256] ={
-0xFF0005, 0xFE1100, 0xFE2900, 0xFE4100, 
-0xFD5800, 0xFD7000, 0xFD8700, 0xFD9F00, 
-0xFCB600, 0xFCCE00, 0xFCE500, 0xFBFB00, 
-0xE3FB00, 0xCBFB00, 0xB4FB00, 0x9CFA00, 
-0x85FA00, 0x6DFA00, 0x56F900, 0x3FF900, 
-0x27F900, 0x10F900, 0x00F808, 0x00F81F, 
-0x00F836, 0x00F74D, 0x00F764, 0x00F77B, 
-0x00F791, 0x00F6A8, 0x00F6BF, 0x01F6D6, 
-0x01F5EC, 0x01E7F5, 0x01D0F5, 0x01B9F5, 
-0x01A2F4, 0x018CF4, 0x0175F4, 0x015EF3, 
-0x0147F3, 0x0131F3, 0x011AF3, 0x0104F2, 
-0x1501F2, 0x2B01F2, 0x4201F1, 0x5801F1, 
-0x6E01F1, 0x8501F0, 0x9B01F0, 0xB101F0, 
-0xC701F0, 0xDD01EF, 0xEF01EB, 0xEF01D5, 
-0xEF01BF, 0xEE01A8, 0xEE0192, 0xEE017C, 
-0xED0166, 0xED0150, 0xED0139, 0xED0123,
-0xFF0005, 0xFE1100, 0xFE2900, 0xFE4100, 
-0xFD5800, 0xFD7000, 0xFD8700, 0xFD9F00, 
-0xFCB600, 0xFCCE00, 0xFCE500, 0xFBFB00, 
-0xE3FB00, 0xCBFB00, 0xB4FB00, 0x9CFA00, 
-0x85FA00, 0x6DFA00, 0x56F900, 0x3FF900, 
-0x27F900, 0x10F900, 0x00F808, 0x00F81F, 
-0x00F836, 0x00F74D, 0x00F764, 0x00F77B, 
-0x00F791, 0x00F6A8, 0x00F6BF, 0x01F6D6, 
-0x01F5EC, 0x01E7F5, 0x01D0F5, 0x01B9F5, 
-0x01A2F4, 0x018CF4, 0x0175F4, 0x015EF3, 
-0x0147F3, 0x0131F3, 0x011AF3, 0x0104F2, 
-0x1501F2, 0x2B01F2, 0x4201F1, 0x5801F1, 
-0x6E01F1, 0x8501F0, 0x9B01F0, 0xB101F0, 
-0xC701F0, 0xDD01EF, 0xEF01EB, 0xEF01D5, 
-0xEF01BF, 0xEE01A8, 0xEE0192, 0xEE017C, 
-0xED0166, 0xED0150, 0xED0139, 0xED0123,
-0xFF0005, 0xFE1100, 0xFE2900, 0xFE4100, 
-0xFD5800, 0xFD7000, 0xFD8700, 0xFD9F00, 
-0xFCB600, 0xFCCE00, 0xFCE500, 0xFBFB00, 
-0xE3FB00, 0xCBFB00, 0xB4FB00, 0x9CFA00, 
-0x85FA00, 0x6DFA00, 0x56F900, 0x3FF900, 
-0x27F900, 0x10F900, 0x00F808, 0x00F81F, 
-0x00F836, 0x00F74D, 0x00F764, 0x00F77B, 
-0x00F791, 0x00F6A8, 0x00F6BF, 0x01F6D6, 
-0x01F5EC, 0x01E7F5, 0x01D0F5, 0x01B9F5, 
-0x01A2F4, 0x018CF4, 0x0175F4, 0x015EF3, 
-0x0147F3, 0x0131F3, 0x011AF3, 0x0104F2, 
-0x1501F2, 0x2B01F2, 0x4201F1, 0x5801F1, 
-0x6E01F1, 0x8501F0, 0x9B01F0, 0xB101F0, 
-0xC701F0, 0xDD01EF, 0xEF01EB, 0xEF01D5, 
-0xEF01BF, 0xEE01A8, 0xEE0192, 0xEE017C, 
-0xED0166, 0xED0150, 0xED0139, 0xED0123,
-0xFF0005, 0xFE1100, 0xFE2900, 0xFE4100, 
-0xFD5800, 0xFD7000, 0xFD8700, 0xFD9F00, 
-0xFCB600, 0xFCCE00, 0xFCE500, 0xFBFB00, 
-0xE3FB00, 0xCBFB00, 0xB4FB00, 0x9CFA00, 
-0x85FA00, 0x6DFA00, 0x56F900, 0x3FF900, 
-0x27F900, 0x10F900, 0x00F808, 0x00F81F, 
-0x00F836, 0x00F74D, 0x00F764, 0x00F77B, 
-0x00F791, 0x00F6A8, 0x00F6BF, 0x01F6D6, 
-0x01F5EC, 0x01E7F5, 0x01D0F5, 0x01B9F5, 
-0x01A2F4, 0x018CF4, 0x0175F4, 0x015EF3, 
-0x0147F3, 0x0131F3, 0x011AF3, 0x0104F2, 
-0x1501F2, 0x2B01F2, 0x4201F1, 0x5801F1, 
-0x6E01F1, 0x8501F0, 0x9B01F0, 0xB101F0, 
-0xC701F0, 0xDD01EF, 0xEF01EB, 0xEF01D5, 
-0xEF01BF, 0xEE01A8, 0xEE0192, 0xEE017C, 
-0xED0166, 0xED0150, 0xED0139, 0xED0123};
+
 
 int dawn[256] ={
 	0xffffc3, 0xffffc2, 0xffffc1, 0xffffbf, 
@@ -379,250 +315,17 @@ int r_b[64] ={
 	0x90, 	  0x89, 	0x83, 	  0x7d, 
 	0x77, 	  0x70, 	0x6a, 	  0x64};
 
-t_img	*init_image(t_env *e)
-{
-	t_img *img;
-
-	img = (t_img*)malloc(sizeof(t_img));
-	img->i_ptr = mlx_new_image(e->mlx, WIDTH, HEIGHT);
-	img->w = WIDTH / 2;
-	img->h = HEIGHT / 2;
-	img->data = mlx_get_data_addr(img->i_ptr, &img->bpp, &img->size_line, &img->endian);
-	
-	return (img);
-}
-
-t_img	*init_image_2(t_env *e)
-{
-	t_img *img;
-
-	img = (t_img*)malloc(sizeof(t_img));
-	img->i_ptr = mlx_new_image(e->mlx, W_2, H_2);
-	img->w = W_2 / 2;
-	img->h = H_2 / 2;
-	img->data = mlx_get_data_addr(img->i_ptr, &img->bpp, &img->size_line, &img->endian);
-	
-	return (img);
-}
-
-t_env	*init_julia(t_env *e)
-{
-	e->win = mlx_new_window(e->mlx, WIDTH, HEIGHT, "Fract'ol - Julia");
-	e->win_2 = mlx_new_window(e->mlx, W_2, H_2, "Mandelbrot Explorer");
-	e->img_2 = init_image_2(e);
-	e->img = init_image(e);
-	e->zoom = 1;
-	e->move_x = 0;
-	e->move_y = 0;
-	e->loc_x = 0;
-	e->loc_y = 0;
-	e->flags = 0;
-	e->max_iterations = 40;
-	e->max_iterations_j = 50;
-	return (e);
-}
-
-t_env	*init_mandlebrot(t_env *e)
-{
-	e->win_2 = mlx_new_window(e->mlx, W_2, H_2, "Fract'ol - Mandelbrot");
-	e->img_2 = init_image_2(e);
-	e->zoom = 1;
-	e->move_x = 0;
-	e->move_y = 0;
-	e->loc_x = 0;
-	e->loc_y = 0;
-	e->flags = 0;
-	e->max_iterations = 50;
-	return (e);
-}
-
 unsigned char parse_input(char *argv)
 {
 	if (ft_strcmp(argv, "julia") == 0)
 		return (JULIA);
 	if (ft_strcmp(argv, "mandelbrot") == 0)
 		return (MAND);
-	// if (ft_strcmp(argv, "tree"))
-	// 	return (TREE);
+	if (ft_strncmp(argv, "tree", 4) == 0)
+		return (TREE);
 	return (0);
 }
 
-t_env	*init_environment(char *argv)
-{
-	t_env *e;
-	unsigned char fract;
-
-	if (!(fract = parse_input(argv)))
-		return (NULL);
-	e = (t_env*)malloc(sizeof(t_env));
-	e->mlx = mlx_init();
-	mlx_do_key_autorepeatoff(e->mlx);
-	if (fract & JULIA)
-		e = init_julia(e);
-	else if (fract & MAND)
-		e = init_mandlebrot(e);
-	// else
-	// 	e = init_tree(e);
-	e->fractol |= fract;
-	return (e);
-}
-
-int mandelbrot(t_env *e, float r, float c_a, float c_b)
-{
-	int n;
-	float a;
-	float o_a;
-	float b;
-	float o_b;
-	
-
-	
-	n = 0;
-	a = 0;
-	b = 0;
-	while (n < e->max_iterations)
-	{
-		o_a = a * a - b * b;
-		o_b = 2 * a * b;
-		a = o_a + c_a;
-		b = o_b + c_b;
-		if (a * a + b * b > 4)
-			break ;
-		n++;
-	}
-	return (n);
-	
-}
-void draw(t_env *e)
-{
-	int i;
-	int j;
-	int p;
-	int ret;
-	float c_a;
-	float c_b;
-	int color;
-	float r;
-
-	// e->img->w = WIDTH / 2;
-	// e->img->h = HEIGHT / 2;
-	// e->img->w *= e->zoom;
-	// e->img->h *= e->zoom;
-		// char *i_data = e->img->data;
-	
-	r = sqrt(pow(W_2 / 2, 2) + pow(H_2 / 2, 2));
-	j = 0;
-	p = 0;
-	while (j < H_2)
-	{
-		i = 0;
-		while (i < W_2)
-		{
-			c_a =  (i - W_2 / 2) / (W_2 / 2 * e->zoom) + e->move_x ;
-			c_b = (j - H_2 / 2) / (H_2 / 2 * e->zoom) + e->move_y ;//(j - e->img->h / 2) / (0.5 * e->img->h )
-			if ((ret = mandelbrot(e, r, c_a, c_b)) == e->max_iterations)
-				color = 0;
-			else
-			{
-				color = rainbow_squanch[(int)((ret * 256 / e->max_iterations))];
-			}
-			// color = sqrt(pow(i - WIDTH / 2, 2) + pow(j - HEIGHT / 2, 2)) * 256 / r;
-			// color = dusk[color % 256];
-			p = (i * 4) + (j * e->img_2->size_line);
-			e->img_2->data[p] = color & 0xFF;
-			e->img_2->data[++p] = (color >> 8) & 0xFF;
-			e->img_2->data[++p] = (color >> 16) & 0xFF;
-			i++;
-		}
-		j++;
-	}
-	// ft_printf(" Bpp %d Size line %d Endian %d Data %d\n", e->img->bpp, e->img->size_line, e->img->endian, ft_atoi(e->img->data));
-	//e->img->data = mlx_get_data_addr(e->img->i_ptr, &e->img->bpp, &e->img->size_line, &e->img->endian);
-	//count++;
-	i = mlx_put_image_to_window(e->mlx, e->win_2, e->img_2->i_ptr, 0, 0);
-	mlx_destroy_image(e->mlx, e->img_2->i_ptr);
-	e->img_2->i_ptr = mlx_new_image(e->mlx, W_2, H_2);
-}
-
-int julia(t_env *e, float c_a, float c_b, float c_re, float c_im)
-{
-	int n;
-	float a;
-	float o_a;
-	float b;
-	float o_b;
-	
-
-	
-	n = 0;
-	a = c_a;
-	b = c_b;
-	while (n < e->max_iterations_j)
-	{
-		o_a = a;
-		o_b = b;
-		a = o_a * o_a - o_b * o_b + c_re;
-		b = 2 * o_a * o_b + c_im;
-		if (a * a + b * b > 4)
-			break ;
-		n++;
-	}
-	return (n);
-	
-}
-void draw_j(t_env *e, float c_re, float c_im)
-{
-	int i;
-	int j;
-	int p;
-	int ret;
-	float c_a;
-	float c_b;
-	// float c_im = 0.156;
-	// float c_re = -0.8;
-	int color;
-	float r;
-
-	// e->img->w = WIDTH / 2;
-	// e->img->h = HEIGHT / 2;
-	// e->img->w *= e->zoom;
-	// e->img->h *= e->zoom;
-		// char *i_data = e->img->data;
-	
-
-	r = sqrt(pow(WIDTH / 2, 2) + pow(HEIGHT / 2, 2));
-	j = 0;
-	p = 0;
-	while (j < HEIGHT)
-	{
-		i = 0;
-		while (i < WIDTH)
-		{
-			c_a = 1.5 * (i - WIDTH / 2) / (WIDTH / 2 );
-			c_b = 1.5 * (j - HEIGHT / 2) / (HEIGHT / 2 );//(j - e->img->h / 2) / (0.5 * e->img->h )
-			if ((ret = julia(e, c_a, c_b, c_re, c_im)) == e->max_iterations_j)
-				color = 0;
-			else
-			{
-				color = rainbow_squanch[(int)((ret * 256 / e->max_iterations_j))];
-			}
-			// color = sqrt(pow(i - WIDTH / 2, 2) + pow(j - HEIGHT / 2, 2)) * 256 / r;
-			// color = dusk[color % 256];
-			p = (i * 4) + (j * e->img->size_line);
-			e->img->data[p] = color & 0xFF;
-			e->img->data[++p] = (color >> 8) & 0xFF;
-			e->img->data[++p] = (color >> 16) & 0xFF;
-			i++;
-		}
-		j++;
-	}
-	// ft_printf(" Bpp %d Size line %d Endian %d Data %d\n", e->img->bpp, e->img->size_line, e->img->endian, ft_atoi(e->img->data));
-	//e->img->data = mlx_get_data_addr(e->img->i_ptr, &e->img->bpp, &e->img->size_line, &e->img->endian);
-	//count++;
-	i = mlx_put_image_to_window(e->mlx, e->win, e->img->i_ptr, 0, 0);
-	mlx_destroy_image(e->mlx, e->img->i_ptr);
-	e->img->i_ptr = mlx_new_image(e->mlx, WIDTH, HEIGHT);
-}
 int	main(int argc, char **argv)
 {
 	t_env *e;
@@ -631,9 +334,15 @@ int	main(int argc, char **argv)
 	{
 		if ((e = init_environment(argv[1])) == NULL)
 			return (0);
-		draw(e);
-		if (e->fractol & JULIA)
+		if (e->fractol & TREE)
+			ft_tree(e);
+		else if (e->fractol & MAND)
+			draw_m(e);
+		else if (e->fractol & JULIA)
+		{
+			draw_m(e);
 			draw_j(e, 0, 0);
+		}
 		my_loop(e);
 	}
 	return (0);
