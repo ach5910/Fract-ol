@@ -28,6 +28,7 @@
 # define JULIA 0x01
 # define MAND  0x02
 # define TREE  0x04
+# define COLOR 0x01
 
 
 
@@ -53,6 +54,7 @@ typedef struct  s_tree
 	char	*f_axiom;
 	int		init_len;
 	double	delta_angle;
+	unsigned char c_fmt;
 }				t_tree;
 
 typedef struct  s_img
@@ -134,6 +136,7 @@ void	julia_hook(t_env *e);
 void	mandlebrot_hook(t_env *e);
 // void	tree_hook(t_env *e);
 int my_loop_hook_j(t_env *e);
+int my_key_function_t(int keycode, t_env *e);
 int my_key_pressed_j(int keycode, t_env *e);
 int my_mouse_function_j(int keycode, int i, int h, t_env *e);
 int my_mouse_motion_j(int i , int j , t_env *e);

@@ -31,6 +31,7 @@ t_env 	*init_tripper(t_env *e)
 	t->rot = (M_PI / 2);
 	t->scl = 0.7;
 	t->delta_angle = (M_PI / 32);
+	t->c_fmt = 0;
 	t->code = "X";
 	t->x_axiom = "F[+X][-X]";
 	t->f_axiom = "F";
@@ -42,7 +43,7 @@ t_env 	*init_windy(t_env *e)
 {
 	t_tree *t;
 	t_vec2 *v;
-
+	
 	t = (t_tree*)malloc(sizeof(t_tree));
 	t->init_len = 10;
 	t->len = t->init_len;
@@ -57,6 +58,7 @@ t_env 	*init_windy(t_env *e)
 	t->rot = (M_PI / 2);
 	t->scl = 0.85;
 	t->delta_angle = (0.1 * M_PI / 180);
+	t->c_fmt = 0;
 	t->code = "F";
 	t->x_axiom = "X";
 	t->f_axiom = "FF+[+F-F-F]-[-F+F+F]";
@@ -83,6 +85,7 @@ t_env 	*init_ficus(t_env *e)
 	t->rot = (M_PI / 2);
 	t->scl = 0.95;
 	t->delta_angle = (M_PI / 32);
+	t->c_fmt = 0;
 	t->code = "X";
 	t->x_axiom = "F[+X][-X]FX";
 	t->f_axiom = "FF";

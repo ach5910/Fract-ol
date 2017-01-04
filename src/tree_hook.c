@@ -14,6 +14,7 @@
 
 void tree_hook(t_env *e)
 {
+	mlx_hook(e->win, 2, 0, my_key_function_t, e);
 	mlx_mouse_hook(e->win, my_mouse_function_t, e);
 	mlx_loop(e->mlx);
 }
@@ -33,5 +34,19 @@ int my_mouse_function_t(int button, int i, int j, t_env *e)
 	e->t->v->y = e->t->srt_ht;
 	mlx_clear_window(e->mlx, e->win);
 	ft_draw_tree(e, e->t, e->t->code, 0);
+	return (0);
+}
+
+int my_key_function_t(int keycode, t_env *e)
+{
+	if (keycode == 49)
+	{
+		e->t->c_fmt ^= COLOR;
+		e->t->len = e->t->init_len;
+		e->t->v->x = W_T / 2;
+		e->t->v->y = e->t->srt_ht;
+		mlx_clear_window(e->mlx, e->win);
+		ft_draw_tree(e, e->t, e->t->code, 0);
+	}
 	return (0);
 }

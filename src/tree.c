@@ -35,8 +35,6 @@ int ft_draw_tree(t_env *e, t_tree *t, char *code, int i)
 
 char *apply_axioms(t_tree *t, char *src)
 {
-	// t_list *stack;
-	// t_node *funct;
 	char *dest;
 	int i = 0;
 
@@ -44,7 +42,7 @@ char *apply_axioms(t_tree *t, char *src)
 	while (src[i])
 	{
 		if (src[i] == 'F')
-			dest = ft_strapp(dest, t->f_axiom);//FF+[+F-F-F]-[-F+F+F]   //"F[-F][+F]F"
+			dest = ft_strapp(dest, t->f_axiom);
 		else if (src[i] == '+')
 			dest = ft_strapp(dest, "+");
 		else if (src[i] == '-')
@@ -54,7 +52,7 @@ char *apply_axioms(t_tree *t, char *src)
 		else if (src[i] == ']')
 			dest = ft_strapp(dest, "]");
 		else if (src[i] == 'X')
-			dest = ft_strapp(dest, t->x_axiom);//"F[+X][-X]FX");//"F[-X][+X]");//FF
+			dest = ft_strapp(dest, t->x_axiom);
 		i++;	
 	}
 	return (dest);
