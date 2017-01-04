@@ -21,13 +21,13 @@ void tree_hook(t_env *e)
 int my_mouse_function_t(int button, int i, int j, t_env *e)
 {
 	if (button == 5)
-		e->t->theta += (M_PI / 32);
+		e->t->theta += e->t->delta_angle;
 	else if (button == 4)
-		e->t->theta -= (M_PI / 32);
+		e->t->theta -= e->t->delta_angle;
 	if (button == 6)
-		e->t->phi += (M_PI / 32);
+		e->t->phi += e->t->delta_angle;
 	else if (button == 7)
-		e->t->phi -= (M_PI / 32);
+		e->t->phi -= e->t->delta_angle;
 	e->t->len = e->t->init_len;
 	e->t->v->x = W_T / 2;
 	e->t->v->y = e->t->srt_ht;

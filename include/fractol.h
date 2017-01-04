@@ -52,6 +52,7 @@ typedef struct  s_tree
 	char	*x_axiom;
 	char	*f_axiom;
 	int		init_len;
+	double	delta_angle;
 }				t_tree;
 
 typedef struct  s_img
@@ -102,6 +103,8 @@ unsigned char parse_input(char *argv);
 void ft_tree(t_env *e);
 void	tree_hook(t_env *e);
 t_tree *ft_pop_tree(t_list **list);
+t_tree	*pop_tree_state(t_tree *t, t_list **stack);
+t_tree	*push_tree_state(t_tree *t, t_list **stack);
 t_tree *draw_branch(t_env *e, t_tree *t);
 t_line	*get_line_params_x(t_env *e,t_vec2 *p1, t_vec2 *p2);
 t_line	*get_line_params_y(t_env *e, t_vec2 *p1, t_vec2 *p2);

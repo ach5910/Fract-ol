@@ -12,24 +12,8 @@
 
 #include "fractol.h"
 
-t_tree *ft_pop_tree(t_list **list)
-{
-	t_tree *data;
-	t_list *temp;
-	if (!*list)
-		return (NULL);
-	data = (*list)->content;
-	if ((*list)->next)
-	{
-		(*list) = (*list)->next;
-	}
-	return (data);
-}
-
 int ft_draw_tree(t_env *e, t_tree *t, char *code, int i)
 {
-	t_tree *temp1;
-	t_tree *temp2;
 	t_list *stack;
 
 	while (code[i])
@@ -41,28 +25,9 @@ int ft_draw_tree(t_env *e, t_tree *t, char *code, int i)
 		else if (code[i] == '-')
 			t->rot -=  t->phi;
 		else if (code[i] == '[')
-		{
-			temp1 = (t_tree*)malloc(sizeof(t_tree));
-			temp1->v = (t_vec2*)malloc(sizeof(t_vec2));
-			temp1->v->x = t->v->x;
-			temp1->v->y = t->v->y;
-			temp1->len = t->len;
-			temp1->rot = t->rot;
-			temp1->theta = t->theta;
-			temp1->phi = t->phi;
-			ft_lstadd(&stack, ft_lstnew(temp1, sizeof(t_tree)));
-			t->branch -= 1;
-			t->len *= t->scl;
-		}
+			t = push_tree_state(t, &stack);
 		else if (code[i] == ']')
-		{
-			temp2 = (t_tree*)malloc(sizeof(t_tree));
-			temp2 = ft_pop_tree(&stack);
-			t->v = temp2->v;
-			t->len = temp2->len;
-			t->rot = temp2->rot;
-			t->branch += 1;
-		}
+			t = pop_tree_state(t, &stack);
 		i++;
 	}
 	return (i);

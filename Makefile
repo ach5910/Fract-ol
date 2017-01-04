@@ -46,6 +46,7 @@ SRC_BASE = 	main.c \
 			mandelbrot_hook.c \
 			tree.c \
 			tree_hook.c \
+			tree_stack.c \
 
 SRC = $(addprefix src/, $(SRC_BASE))
 
