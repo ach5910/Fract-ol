@@ -39,8 +39,8 @@ int my_key_pressed_j(int keycode, t_env *e)
 		e->flags |= TRAN_V;
 	else if (keycode == 126)
 		e->flags |= TRAN_V | SIGN;
-	// else if (keycode == 48)
-	// 	e->scale *= 0.5; 
+	else if (keycode == 49)
+		e->flags |= C_MAP; 
 	return (0);
 }
 
@@ -133,6 +133,16 @@ int my_loop_hook_j(t_env *e)
 		e->move_y += (e->loc_y - H_2 / 2) / (H_2 / 2 * e->zoom) / 8;
 		mlx_clear_window(e->mlx, e->win_2);
 		draw_m(e);
+	}
+	else if (e->flags & C_MAP)
+	{
+		e->flags = 0;
+		e = set_color_map(e);
+		mlx_clear_window(e->mlx, e->win_2);
+		draw_m(e);
+		mlx_clear_window(e->mlx, e->win);
+		draw_j(e, (W_2 / 2) / (W_2 / 2 * e->zoom) + e->move_x ,
+			(H_2 / 2) / (H_2 / 2 * e->zoom) + e->move_y);
 	}
 	return (0);
 }

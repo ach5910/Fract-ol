@@ -21,6 +21,8 @@ void tree_hook(t_env *e)
 
 int my_mouse_function_t(int button, int i, int j, t_env *e)
 {
+	if (button == 1)
+		e = set_color_map(e);
 	if (button == 5)
 		e->t->theta += e->t->delta_angle;
 	else if (button == 4)

@@ -25,12 +25,13 @@
 # define TRAN_V  0x02
 # define SCL  0x04
 # define SIGN 0x08
+# define C_MAP 0X10
 # define JULIA 0x01
 # define MAND  0x02
 # define TREE  0x04
 # define COLOR 0x01
 
-
+typedef int	*(*t_maps)(int);
 
 typedef struct 	s_vec2
 {
@@ -81,11 +82,13 @@ typedef struct 	s_env
 	int		loc_x;
 	int		loc_y;
 	unsigned char fractol;
-	unsigned char flags;
+	unsigned int flags;
 	int max_iterations;
 	int max_iterations_j;
 	t_tree 	*t;
 	int b;
+	int		*color_map;
+	int		c_iter;
 }				t_env;
 
 typedef struct  s_line
@@ -135,6 +138,22 @@ void	draw_j(t_env *e, float c_re, float c_im);
 void	julia_hook(t_env *e);
 void	mandlebrot_hook(t_env *e);
 // void	tree_hook(t_env *e);
+int					*dawn(int i);
+int					*dusk(int i);
+int					*kryptonite(int i);
+int					*dawn(int i);
+int					*red_blue(int i);
+int					*fire(int i);
+int					*ice(int i);
+int					*seashore(int i);
+int					*kryptonite_center(int i);
+int					*seashore_center(int i);
+int					*fire_center(int i);
+int					*dawn_center(int i);
+int					*rainbow_squanch(int i);
+int					*tree_map(int i);
+t_maps				get_color_map(int i);
+t_env				*set_color_map(t_env *e);
 int my_loop_hook_j(t_env *e);
 int my_key_function_t(int keycode, t_env *e);
 int my_key_pressed_j(int keycode, t_env *e);

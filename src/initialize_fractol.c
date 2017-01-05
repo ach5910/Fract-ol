@@ -38,6 +38,7 @@ t_env	*init_julia(t_env *e)
 	e->win_2 = mlx_new_window(e->mlx, W_2, H_2, "Mandelbrot Explorer");
 	e->img_2 = init_image_2(e);
 	e->img = init_image(e);
+	e = set_color_map(e);
 	e->zoom = 1;
 	e->move_x = 0;
 	e->move_y = 0;
@@ -53,6 +54,7 @@ t_env	*init_mandlebrot(t_env *e)
 {
 	e->win_2 = mlx_new_window(e->mlx, W_2, H_2, "Fract'ol - Mandelbrot");
 	e->img_2 = init_image_2(e);
+	e = set_color_map(e);
 	e->zoom = 1;
 	e->move_x = 0;
 	e->move_y = 0;

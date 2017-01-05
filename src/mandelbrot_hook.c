@@ -37,6 +37,8 @@ int my_key_pressed_m(int keycode, t_env *e)
 		e->flags |= TRAN_V;
 	else if (keycode == 126)
 		e->flags |= TRAN_V | SIGN;
+	else if (keycode == 49)
+		e->flags |= C_MAP;
 	return (0);
 }
 
@@ -57,6 +59,7 @@ int my_mouse_function_m(int button, int i, int j, t_env *e)
 		mlx_clear_window(e->mlx, e->win_2);
 		draw_m(e);
 	}
+	
 	return (0);
 }
 
@@ -72,6 +75,13 @@ int my_loop_hook_m(t_env *e)
 		e->flags = 0;
 		e->move_x += (e->loc_x - W_2 / 2) / (W_2 / 2 * e->zoom) / 8;
 		e->move_y += (e->loc_y - H_2 / 2) / (H_2 / 2 * e->zoom) / 8;
+		mlx_clear_window(e->mlx, e->win_2);
+		draw_m(e);
+	}
+	else if (e->flags & C_MAP)
+	{
+		e->flags = 0;
+		e = set_color_map(e);
 		mlx_clear_window(e->mlx, e->win_2);
 		draw_m(e);
 	}

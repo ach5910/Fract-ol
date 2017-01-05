@@ -97,6 +97,7 @@ t_env	*init_tree(t_env *e, char *argv)
 {
 	e->win = mlx_new_window(e->mlx, W_T, H_T, "Fractal Tree");
 	e->img = init_image_t(e);
+	e = set_color_map(e);
 	if (ft_str_index(argv, '1') == 4)
 		e = init_tripper(e);
 	if (ft_str_index(argv, '2') == 4)

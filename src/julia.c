@@ -12,7 +12,7 @@
 
 #include "fractol.h"
 
-int rainbow_squanch[256] ={
+int rainbow_suanch[256] ={
 0xFF0005, 0xFE1100, 0xFE2900, 0xFE4100, 
 0xFD5800, 0xFD7000, 0xFD8700, 0xFD9F00, 
 0xFCB600, 0xFCCE00, 0xFCE500, 0xFBFB00, 
@@ -129,7 +129,7 @@ void draw_j(t_env *e, float c_re, float c_im)
 				color = 0;
 			else
 			{
-				color = rainbow_squanch[(int)((ret * 256 / e->max_iterations_j))];
+				color = e->color_map[(int)((ret * 64 * e->c_iter / e->max_iterations_j)) % 64];
 			}
 			// color = sqrt(pow(i - WIDTH / 2, 2) + pow(j - HEIGHT / 2, 2)) * 256 / r;
 			// color = dusk[color % 256];

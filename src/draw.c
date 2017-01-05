@@ -400,8 +400,10 @@ void draw_lines_x(t_env *e, t_vec2 *p1, t_vec2 *p2)
 	int color;
 	int ratio;
 	int center = (int)sqrt(pow(W_T / 2, 2) +  pow(H_T / 2, 2));
+	int *ary;
 	// double c_delt;
 	// long p;
+	ary = e->color_map;
 	d = get_line_params_x(e, p1, p2);
 	while (d->i < d->end->x)
 	{
@@ -409,12 +411,11 @@ void draw_lines_x(t_env *e, t_vec2 *p1, t_vec2 *p2)
 		// c_delt = fabs((d->i - e->pnts[d->start].x) / d->dx);
 		// color |= ((int)(d->ci_r + (d->cf_r - d->ci_r) * c_delt) << 16) | ((int)(d->ci_g + ((d->cf_g - d->ci_g)) * c_delt) << 8 )|
 		// 	(int)(d->ci_b + ((d->cf_b - d->ci_b)) * c_delt);
-
-		ratio = (int)sqrt(pow(d->i - W_T / 2, 2) + pow(d->j - H_T / 2, 2)) * 255 / center;
+		ratio = (int)sqrt(pow(d->i - W_T / 2, 2) + pow(d->j - H_T / 2, 2)) * 64 / center;
 		if (e->t->c_fmt)
-			color = ary[(e->t->branch * 255 / e->t->size) % 255];
+			color = ary[(e->t->branch * 63 / e->t->size)];
 		else
-			color = ary[((int)ratio) % 255];
+			color = ary[((int)ratio) * e->c_iter % 64];
 		// ratio = (int)sqrt(pow(d->i - W_T / 2, 2) + pow(d->j - H_T / 2, 2)) * 255 / center;
 		// color = ary[(int)ratio];
 		mlx_pixel_put(e->mlx, e->win, d->i , d->j, color);
@@ -462,6 +463,7 @@ void draw_lines_y(t_env *e, t_vec2 *p1,t_vec2 *p2)
 	int color;
 	int ratio;
 	int center = (int)sqrt(pow(W_T / 2, 2) +  pow(H_T / 2, 2));
+	int *ary;
 	// double c_delt;
 	// int p;
 	// color = ary[e->t->branch * 255 / e->t->size];
@@ -469,12 +471,12 @@ void draw_lines_y(t_env *e, t_vec2 *p1,t_vec2 *p2)
 	d = get_line_params_y(e, p1, p2);
 	// ratio = (int)sqrt(pow(d->j - W_T / 2, 2) + pow(d->i - H_T / 2, 2)) * 255/ center;
 	// color = ary[(int)ratio];
-
-	ratio = (int)sqrt(pow(d->j - W_T / 2, 2) + pow(d->i - H_T / 2, 2)) * 255 / center;
+	ary = e->color_map;
+	ratio = (int)sqrt(pow(d->j - W_T / 2, 2) + pow(d->i - H_T / 2, 2)) * 64 / center;
 	if (e->t->c_fmt)
-		color = ary[(e->t->branch * 255 / e->t->size) % 255];
+		color = ary[(e->t->branch * 63 / e->t->size)];
 	else
-		color = ary[((int)ratio) % 255];
+		color = ary[((int)ratio) * e->c_iter % 64];
 	mlx_pixel_put(e->mlx, e->win, d->j, d->i, color);
 	// p = (d->j) * 4 + (d->i * e->img->size_line);
 	// e->img->data[p] = (int)d->ci_b;
@@ -494,11 +496,11 @@ void draw_lines_y(t_env *e, t_vec2 *p1,t_vec2 *p2)
 		// color = 0;
 		// ratio = (int)sqrt(pow(d->i - WIDTH / 2, 2) + pow(d->j - HEIGHT / 2, 2)) * 255;
 	 //    color |= (ratio << 16) | (ratio << 8) | ratio;
-		ratio = (int)sqrt(pow(d->j - W_T / 2, 2) + pow(d->i - H_T / 2, 2)) * 255 / center;
+		ratio = (int)sqrt(pow(d->j - W_T / 2, 2) + pow(d->i - H_T / 2, 2)) * 64 / center;
 		if (e->t->c_fmt)
-			color = ary[(e->t->branch * 255 / e->t->size) % 255];
+			color = ary[(e->t->branch * 63 / e->t->size)];
 		else
-			color = ary[((int)ratio) % 255];
+			color = ary[(((int)ratio) * e->c_iter % 64)];
 		mlx_pixel_put(e->mlx, e->win, d->j , d->i, color);
 		if (d->p < 0)
 		{

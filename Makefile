@@ -47,6 +47,16 @@ SRC_BASE = 	main.c \
 			tree.c \
 			tree_hook.c \
 			tree_stack.c \
+			color_mapping/color_map.c \
+			color_mapping/dawn.c \
+			color_mapping/dusk.c \
+			color_mapping/fire.c \
+			color_mapping/ice.c \
+			color_mapping/kryptonite.c \
+			color_mapping/red_blue.c \
+			color_mapping/seashore.c \
+			color_mapping/rainbow_squanch.c \
+			color_mapping/tree_map.c \
 
 SRC = $(addprefix src/, $(SRC_BASE))
 
@@ -61,6 +71,10 @@ $(OBJ): | obj
 
 obj:
 	mkdir -p $@
+	mkdir -p $@/color_mapping
+
+obj/color_mapping/%.o: src/color_mapping/%.c
+	$(CC) $(CFLAGS) -o $@ -c $<
 
 obj/%.o: src/%.c
 	$(CC) $(CFLAGS) -o $@ -c $<
