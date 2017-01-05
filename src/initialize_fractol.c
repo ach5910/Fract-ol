@@ -45,6 +45,8 @@ t_env	*init_julia(t_env *e)
 	e->loc_x = 0;
 	e->loc_y = 0;
 	e->flags = 0;
+	e->c_re = 0;
+	e->c_im = 0;
 	e->max_iterations = 40;
 	e->max_iterations_j = 50;
 	return (e);

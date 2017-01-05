@@ -78,7 +78,7 @@
 // 0xEF01BF, 0xEE01A8, 0xEE0192, 0xEE017C, 
 // 0xED0166, 0xED0150, 0xED0139, 0xED0123};
 
-int mandelbrot(t_env *e, float r, float c_a, float c_b)
+int mandelbrot(t_env *e, float c_a, float c_b)
 {
 	int n;
 	float a;
@@ -99,22 +99,30 @@ int mandelbrot(t_env *e, float r, float c_a, float c_b)
 			break ;
 		n++;
 	}
-	return (n);	
+	if (n == e->max_iterations)
+		return (0);
+	return (e->color_map[(int)(n * 64 * e->c_iter / e->max_iterations) % 64]);
 }
+
+void pixel_to_img(t_env *e, int i, int j, int color)
+{
+	int p;
+	
+	p = (i * 4) + (j * e->img_2->size_line);
+	e->img_2->data[p] = color & 0xFF;
+	e->img_2->data[++p] = (color >> 8) & 0xFF;
+	e->img_2->data[++p] = (color >> 16) & 0xFF;
+}
+
 void draw_m(t_env *e)
 {
 	int i;
 	int j;
-	int p;
-	int ret;
 	float c_a;
 	float c_b;
 	int color;
-	float r;
 	
-	r = sqrt(pow(W_2 / 2, 2) + pow(H_2 / 2, 2));
 	j = 0;
-	p = 0;
 	while (j < H_2)
 	{
 		i = 0;
@@ -122,18 +130,8 @@ void draw_m(t_env *e)
 		{
 			c_a =  (i - W_2 / 2) / (W_2 / 2 * e->zoom) + e->move_x ;
 			c_b = (j - H_2 / 2) / (H_2 / 2 * e->zoom) + e->move_y ;
-			if ((ret = mandelbrot(e, r, c_a, c_b)) == e->max_iterations)
-				color = 0;
-			else
-			{
-				color = e->color_map[(int)((ret * 64 * e->c_iter / e->max_iterations)) % 64];
-			}
-			// color = sqrt(pow(i - WIDTH / 2, 2) + pow(j - HEIGHT / 2, 2)) * 256 / r;
-			// color = dusk[color % 256];
-			p = (i * 4) + (j * e->img_2->size_line);
-			e->img_2->data[p] = color & 0xFF;
-			e->img_2->data[++p] = (color >> 8) & 0xFF;
-			e->img_2->data[++p] = (color >> 16) & 0xFF;
+			color = mandelbrot(e, c_a, c_b);
+			pixel_to_img(e, i, j, color);
 			i++;
 		}
 		j++;

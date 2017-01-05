@@ -17,8 +17,8 @@
 # include "math.h"
 # define WIDTH 800
 # define HEIGHT 600
-# define W_2 500
-# define H_2 500
+# define W_2 800
+# define H_2 600
 # define W_T 1500
 # define H_T 1000
 # define TRAN_H 0x01
@@ -26,6 +26,7 @@
 # define SCL  0x04
 # define SIGN 0x08
 # define C_MAP 0X10
+# define FREEZE 0x20
 # define JULIA 0x01
 # define MAND  0x02
 # define TREE  0x04
@@ -81,6 +82,8 @@ typedef struct 	s_env
 	double	move_y;
 	int		loc_x;
 	int		loc_y;
+	float	c_re;
+	float	c_im;
 	unsigned char fractol;
 	unsigned int flags;
 	int max_iterations;
@@ -124,7 +127,7 @@ char *apply_axioms(t_tree *t, char *src);
 char	*generate_code(t_env *e, char *code, int len);
 int my_mouse_function_t(int keycode, int i, int h, t_env *e);
 int mandlebrot(t_env *e, float r, float c_a, float c_b);
-int julia(t_env *e, float c_a, float c_b, float c_re, float c_im);
+int julia(t_env *e, float a, float b);
 t_img *init_image(t_env *e);
 t_env	*init_julia(t_env *e);
 t_env	*init_mandlebrot(t_env *e);
@@ -135,7 +138,7 @@ t_env	*init_ficus(t_env *e);
 t_env *init_environment(char *argv);
 void	my_loop(t_env *e);
 void	draw_m(t_env *e);
-void	draw_j(t_env *e, float c_re, float c_im);
+void	draw_j(t_env *e);
 void	julia_hook(t_env *e);
 void	mandlebrot_hook(t_env *e);
 // void	tree_hook(t_env *e);
