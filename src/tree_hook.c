@@ -12,14 +12,15 @@
 
 #include "fractol.h"
 
-void tree_hook(t_env *e)
+void	tree_hook(t_env *e)
 {
 	mlx_hook(e->win, 2, 0, my_key_function_t, e);
 	mlx_mouse_hook(e->win, my_mouse_function_t, e);
+	mlx_expose_hook(e->win, expose_hook_t, e);
 	mlx_loop(e->mlx);
 }
 
-int my_mouse_function_t(int button, int i, int j, t_env *e)
+int		my_mouse_function_t(int button, int i, int j, t_env *e)
 {
 	if (button == 1)
 		e = set_color_map(e);
@@ -39,7 +40,7 @@ int my_mouse_function_t(int button, int i, int j, t_env *e)
 	return (0);
 }
 
-int my_key_function_t(int keycode, t_env *e)
+int		my_key_function_t(int keycode, t_env *e)
 {
 	if (keycode == 49)
 	{

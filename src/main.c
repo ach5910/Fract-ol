@@ -12,7 +12,7 @@
 
 #include "fractol.h"
 
-unsigned char parse_input(char *argv)
+unsigned char	parse_input(char *argv)
 {
 	if (ft_strcmp(argv, "julia") == 0)
 		return (JULIA);
@@ -23,7 +23,7 @@ unsigned char parse_input(char *argv)
 	return (0);
 }
 
-int	main(int argc, char **argv)
+int				main(int argc, char **argv)
 {
 	t_env *e;
 

@@ -14,11 +14,11 @@
 
 t_tree	*draw_branch(t_env *e, t_tree *t)
 {
-	t_vec2 *p1;
-	t_vec2 *p2;
-	int center;
+	t_vec2	*p1;
+	t_vec2	*p2;
+	int		center;
 
-	center = (int)sqrt(pow(W_T / 2, 2) +  pow(H_T / 2, 2));
+	center = (int)sqrt(pow(W_T / 2, 2) + pow(H_T / 2, 2));
 	p1 = t->v;
 	p2 = (t_vec2*)malloc(sizeof(t_vec2));
 	p2->x = p1->x - t->len * cos(t->rot);
@@ -26,27 +26,14 @@ t_tree	*draw_branch(t_env *e, t_tree *t)
 	if (fabs(p1->y - p2->y) > fabs(p1->x - p2->x))
 		draw_lines_y(e, p1, p2, center);
 	else
-		draw_lines_x(e, p1, p2, center);	
+		draw_lines_x(e, p1, p2, center);
 	t->v = p2;
 	return (t);
 }
 
-int	get_color(t_env *e, double i, double j, int center)
+t_line	*get_line_params_x(t_env *e, t_vec2 *p1, t_vec2 *p2)
 {
-	int ratio;
-	int color;
-
-	ratio = (int)sqrt(pow(i - W_T / 2, 2) + pow(j - H_T / 2, 2)) * 64 / center;
-	if (e->t->c_fmt)
-		color = e->color_map[(e->t->branch * 63 / e->t->size)];
-	else
-		color = e->color_map[((int)ratio) * e->c_iter % 64];
-	return (color);
-}
-
-t_line *get_line_params_x(t_env *e, t_vec2 *p1, t_vec2 *p2)
-{
-	t_line *data;
+	t_line	*data;
 
 	data = (t_line*)malloc(sizeof(t_line));
 	data->dx = fabs(p1->x - p2->x);
@@ -60,16 +47,16 @@ t_line *get_line_params_x(t_env *e, t_vec2 *p1, t_vec2 *p2)
 	return (data);
 }
 
-void draw_lines_x(t_env *e, t_vec2 *p1, t_vec2 *p2, int center)
+void	draw_lines_x(t_env *e, t_vec2 *p1, t_vec2 *p2, int center)
 {
-	t_line *d;
-	int color;
+	t_line	*d;
+	int		color;
 
 	d = get_line_params_x(e, p1, p2);
 	while (d->i < d->end->x)
 	{
 		color = get_color(e, d->i, d->j, center);
-		mlx_pixel_put(e->mlx, e->win, d->i , d->j, color);
+		mlx_pixel_put(e->mlx, e->win, d->i, d->j, color);
 		if (d->p < 0)
 			d->p += (2 * d->dy);
 		else
@@ -82,9 +69,9 @@ void draw_lines_x(t_env *e, t_vec2 *p1, t_vec2 *p2, int center)
 	ft_memdel((void **)&d);
 }
 
-t_line *get_line_params_y(t_env *e, t_vec2 *p1, t_vec2 *p2)
+t_line	*get_line_params_y(t_env *e, t_vec2 *p1, t_vec2 *p2)
 {
-	t_line *data;
+	t_line	*data;
 
 	data = (t_line*)malloc(sizeof(t_line));
 	data->dx = fabs(p1->x - p2->x);
@@ -98,10 +85,10 @@ t_line *get_line_params_y(t_env *e, t_vec2 *p1, t_vec2 *p2)
 	return (data);
 }
 
-void draw_lines_y(t_env *e, t_vec2 *p1,t_vec2 *p2, int center)
+void	draw_lines_y(t_env *e, t_vec2 *p1, t_vec2 *p2, int center)
 {
-	t_line *d;
-	int color;
+	t_line	*d;
+	int		color;
 
 	d = get_line_params_y(e, p1, p2);
 	color = get_color(e, d->j, d->i, center);
@@ -109,7 +96,7 @@ void draw_lines_y(t_env *e, t_vec2 *p1,t_vec2 *p2, int center)
 	while (d->i < d->end->y)
 	{
 		color = get_color(e, d->j, d->i, center);
-		mlx_pixel_put(e->mlx, e->win, d->j , d->i, color);
+		mlx_pixel_put(e->mlx, e->win, d->j, d->i, color);
 		if (d->p < 0)
 			d->p += (2 * d->dx);
 		else
@@ -121,8 +108,3 @@ void draw_lines_y(t_env *e, t_vec2 *p1,t_vec2 *p2, int center)
 	}
 	ft_memdel((void **)&d);
 }
-
-
-
-
-

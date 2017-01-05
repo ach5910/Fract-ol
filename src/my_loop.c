@@ -12,7 +12,7 @@
 
 #include "fractol.h"
 
-void my_loop(t_env *e)
+void	my_loop(t_env *e)
 {
 	if (e->fractol & JULIA)
 		julia_hook(e);

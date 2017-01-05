@@ -12,7 +12,7 @@
 
 #include "fractol.h"
 
-t_env 	*init_tripper(t_env *e)
+t_env	*init_tripper(t_env *e)
 {
 	t_tree *t;
 	t_vec2 *v;
@@ -39,11 +39,11 @@ t_env 	*init_tripper(t_env *e)
 	return (e);
 }
 
-t_env 	*init_windy(t_env *e)
+t_env	*init_windy(t_env *e)
 {
 	t_tree *t;
 	t_vec2 *v;
-	
+
 	t = (t_tree*)malloc(sizeof(t_tree));
 	t->init_len = 10;
 	t->len = t->init_len;
@@ -53,11 +53,11 @@ t_env 	*init_windy(t_env *e)
 	t->v->y = H_T * 15 / 16;
 	t->size = 5;
 	t->branch = 5;
-	t->theta = (22.5 * M_PI / 180);
-	t->phi = (22.5 * M_PI / 180);
+	t->theta = (M_PI / 8);
+	t->phi = (M_PI / 8);
 	t->rot = (M_PI / 2);
 	t->scl = 0.85;
-	t->delta_angle = (0.1 * M_PI / 180);
+	t->delta_angle = (M_PI / 32);
 	t->c_fmt = 0;
 	t->code = "F";
 	t->x_axiom = "X";
@@ -66,7 +66,7 @@ t_env 	*init_windy(t_env *e)
 	return (e);
 }
 
-t_env 	*init_ficus(t_env *e)
+t_env	*init_ficus(t_env *e)
 {
 	t_tree *t;
 	t_vec2 *v;

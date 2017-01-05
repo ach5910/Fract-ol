@@ -12,16 +12,16 @@
 
 #include "fractol.h"
 
-int julia(t_env *e, float a, float b)
+int		julia(t_env *e, float a, float b)
 {
-	int n;
-	int color;
-	float o_a;
-	float o_b;
-	
+	int		n;
+	int		color;
+	float	o_a;
+	float	o_b;
+
 	n = 0;
-	a = 1.5 * (a - WIDTH / 2) / (WIDTH / 2 );
-	b = 1.5 * (b - HEIGHT / 2) / (HEIGHT / 2 );
+	a = 1.5 * (a - WIDTH / 2) / (WIDTH / 2);
+	b = 1.5 * (b - HEIGHT / 2) / (HEIGHT / 2);
 	while (n < e->max_iterations_j)
 	{
 		o_a = a;
@@ -34,18 +34,17 @@ int julia(t_env *e, float a, float b)
 	}
 	if (n == e->max_iterations_j)
 		return (0);
-	color =	(e->color_map[(int)((n * 64 * e->c_iter /
-		e->max_iterations_j)) % 64]);
+	color = e->color_map[(int)((n * 64 * e->c_iter
+		/ e->max_iterations_j)) % 64];
 	return (color);
 }
 
-
-void draw_j(t_env *e)
+void	draw_j(t_env *e)
 {
-	float i;
-	float j;
-	int p;
-	int color;
+	float	i;
+	float	j;
+	int		p;
+	int		color;
 
 	j = 0;
 	p = 0;

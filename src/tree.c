@@ -12,7 +12,7 @@
 
 #include "fractol.h"
 
-int ft_draw_tree(t_env *e, t_tree *t, char *code, int i)
+int		ft_draw_tree(t_env *e, t_tree *t, char *code, int i)
 {
 	t_list *stack;
 
@@ -23,7 +23,7 @@ int ft_draw_tree(t_env *e, t_tree *t, char *code, int i)
 		else if (code[i] == '+')
 			t->rot += t->theta;
 		else if (code[i] == '-')
-			t->rot -=  t->phi;
+			t->rot -= t->phi;
 		else if (code[i] == '[')
 			t = push_tree_state(t, &stack);
 		else if (code[i] == ']')
@@ -33,11 +33,12 @@ int ft_draw_tree(t_env *e, t_tree *t, char *code, int i)
 	return (i);
 }
 
-char *apply_axioms(t_tree *t, char *src)
+char	*apply_axioms(t_tree *t, char *src)
 {
-	char *dest;
-	int i = 0;
+	char	*dest;
+	int		i;
 
+	i = 0;
 	dest = ft_strnew(1);
 	while (src[i])
 	{
@@ -53,14 +54,16 @@ char *apply_axioms(t_tree *t, char *src)
 			dest = ft_strapp(dest, "]");
 		else if (src[i] == 'X')
 			dest = ft_strapp(dest, t->x_axiom);
-		i++;	
+		i++;
 	}
 	return (dest);
 }
 
 char	*generate_code(t_env *e, char *code, int len)
 {
-	int i = 0;
+	int i;
+
+	i = 0;
 	while (i < len)
 	{
 		code = apply_axioms(e->t, code);
@@ -69,9 +72,10 @@ char	*generate_code(t_env *e, char *code, int len)
 	return (code);
 }
 
-void ft_tree(t_env *e)
+void	ft_tree(t_env *e)
 {
 	char *code;
+
 	code = generate_code(e, e->t->code, e->t->branch);
 	e->t->code = ft_strdup(code);
 	ft_draw_tree(e, e->t, code, 0);

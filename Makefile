@@ -57,6 +57,7 @@ SRC_BASE = 	main.c \
 			color_mapping/seashore.c \
 			color_mapping/rainbow_squanch.c \
 			color_mapping/tree_map.c \
+			expose.c \
 
 SRC = $(addprefix src/, $(SRC_BASE))
 

@@ -14,8 +14,8 @@
 
 t_env	*init_environment(char *argv)
 {
-	t_env *e;
-	unsigned char fract;
+	t_env			*e;
+	unsigned char	fract;
 
 	if (!(fract = parse_input(argv)))
 		return (NULL);

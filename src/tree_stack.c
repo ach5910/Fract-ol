@@ -12,10 +12,11 @@
 
 #include "fractol.h"
 
-t_tree *ft_pop_tree(t_list **list)
+t_tree	*ft_pop_tree(t_list **list)
 {
 	t_tree *data;
 	t_list *temp;
+
 	if (!*list)
 		return (NULL);
 	data = (*list)->content;

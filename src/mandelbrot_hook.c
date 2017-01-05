@@ -12,21 +12,19 @@
 
 #include "fractol.h"
 
-void mandlebrot_hook(t_env *e)
+void	mandlebrot_hook(t_env *e)
 {
-	//mlx_expose_hook(e->win, expose_hook, e);
-	// mlx_key_hook(t_e->win, my_key_funct, t_e);
+	mlx_expose_hook(e->win_2, expose_hook_m, e);
 	mlx_hook(e->win_2, 2, 0, my_key_pressed_m, e);
-	// mlx_hook(e->win_2, 5, 0, my_mouse_released, e);
 	mlx_mouse_hook(e->win_2, my_mouse_function_m, e);
 	mlx_loop_hook(e->mlx, my_loop_hook_m, e);
 	mlx_loop(e->mlx);
 }
 
-int my_key_pressed_m(int keycode, t_env *e)
+int		my_key_pressed_m(int keycode, t_env *e)
 {
 	if (keycode == 24)
-		e->flags |= SCL ;
+		e->flags |= SCL;
 	else if (keycode == 27)
 		e->flags |= SCL | SIGN;
 	else if (keycode == 123)
@@ -42,7 +40,7 @@ int my_key_pressed_m(int keycode, t_env *e)
 	return (0);
 }
 
-int my_mouse_function_m(int button, int i, int j, t_env *e)
+int		my_mouse_function_m(int button, int i, int j, t_env *e)
 {
 	e->loc_x = i;
 	e->loc_y = j;
@@ -59,12 +57,10 @@ int my_mouse_function_m(int button, int i, int j, t_env *e)
 		mlx_clear_window(e->mlx, e->win_2);
 		draw_m(e);
 	}
-	
 	return (0);
 }
 
-
-int my_loop_hook_m(t_env *e)
+int		my_loop_hook_m(t_env *e)
 {
 	if (e->flags & SIGN)
 		e->zoom /= 1.085;

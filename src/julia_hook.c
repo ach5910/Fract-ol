@@ -12,20 +12,21 @@
 
 #include "fractol.h"
 
-void julia_hook(t_env *e)
+void	julia_hook(t_env *e)
 {
-	//mlx_expose_hook(e->win, expose_hook, e);
+	mlx_expose_hook(e->win, expose_hook_j, e);
+	mlx_expose_hook(e->win_2, expose_hook_m, e);
 	mlx_hook(e->win_2, 2, 0, my_key_pressed_j, e);
 	mlx_hook(e->win_2, 6, 0, my_mouse_motion_j, e);
-	mlx_mouse_hook(e->win_2, my_mouse_function_j,e);
+	mlx_mouse_hook(e->win_2, my_mouse_function_j, e);
 	mlx_loop_hook(e->mlx, my_loop_hook_j, e);
 	mlx_loop(e->mlx);
 }
 
-int my_key_pressed_j(int keycode, t_env *e)
+int		my_key_pressed_j(int keycode, t_env *e)
 {
 	if (keycode == 24)
-		e->flags |= SCL ;
+		e->flags |= SCL;
 	else if (keycode == 27)
 		e->flags |= SCL | SIGN;
 	else if (keycode == 123)
@@ -43,11 +44,11 @@ int my_key_pressed_j(int keycode, t_env *e)
 	return (0);
 }
 
-int my_mouse_function_j(int button, int i, int j, t_env *e)
+int		my_mouse_function_j(int button, int i, int j, t_env *e)
 {
-	static int d = 0;
-	double y;
-	double x;
+	static int	d = 0;
+	double		y;
+	double		x;
 
 	e->loc_x = i;
 	e->loc_y = j;
@@ -71,7 +72,7 @@ int my_mouse_function_j(int button, int i, int j, t_env *e)
 	return (0);
 }
 
-int my_mouse_motion_j(int i , int j , t_env *e)
+int		my_mouse_motion_j(int i, int j, t_env *e)
 {
 	if (e->flags & FREEZE)
 		return (0);
@@ -85,7 +86,7 @@ int my_mouse_motion_j(int i , int j , t_env *e)
 	return (0);
 }
 
-int my_loop_hook_j(t_env *e)
+int		my_loop_hook_j(t_env *e)
 {
 	if (e->flags & SIGN)
 		e->zoom /= 1.085;
@@ -99,9 +100,7 @@ int my_loop_hook_j(t_env *e)
 		mlx_clear_window(e->mlx, e->win_2);
 		draw_m(e);
 	}
-	if (e->flags & FREEZE)
-		return (0);
-	else if (e->flags & C_MAP)
+	else if ((e->flags & C_MAP) && !(e->flags & FREEZE))
 	{
 		e->flags = 0;
 		e = set_color_map(e);

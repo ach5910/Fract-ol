@@ -42,10 +42,23 @@ t_maps		get_color_map(int i)
 	return (color_maps[(int)i]);
 }
 
-t_env	*set_color_map(t_env *e)
+int			get_color(t_env *e, double i, double j, int center)
 {
-	static int col_iter = 0;
-	t_maps map;
+	int ratio;
+	int color;
+
+	ratio = (int)sqrt(pow(i - W_T / 2, 2) + pow(j - H_T / 2, 2)) * 64 / center;
+	if (e->t->c_fmt)
+		color = e->color_map[(e->t->branch * 63 / e->t->size)];
+	else
+		color = e->color_map[((int)ratio) * e->c_iter % 64];
+	return (color);
+}
+
+t_env		*set_color_map(t_env *e)
+{
+	static int	col_iter = 0;
+	t_maps		map;
 
 	map = get_color_map(col_iter % 13);
 	e->color_map = map(0);
